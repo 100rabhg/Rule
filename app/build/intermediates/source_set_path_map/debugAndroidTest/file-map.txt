@@ -1,6 +1,0 @@
-com.example.rule.dash.test.app-jetified-core-1.5.0-0 C:\Users\Administrator\.gradle\caches\transforms-3\3886a6b0da04278c23d439e4ef580ad5\transformed\jetified-core-1.5.0\res
-com.example.rule.dash.test.app-jetified-annotation-experimental-1.3.0-1 C:\Users\Administrator\.gradle\caches\transforms-3\6b942fcbd228242fc8f0d25814a61b8c\transformed\jetified-annotation-experimental-1.3.0\res
-com.example.rule.dash.test.app-androidTest-2 E:\Practice\Dash\app\build\generated\res\resValues\androidTest\debug
-com.example.rule.dash.test.app-mergeDebugAndroidTestResources-3 E:\Practice\Dash\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.example.rule.dash.test.app-mergeDebugAndroidTestResources-4 E:\Practice\Dash\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.example.rule.dash.test.app-merged_res-5 E:\Practice\Dash\app\build\intermediates\merged_res\debugAndroidTest
