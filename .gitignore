@@ -37,8 +37,5 @@ proguard/
 # NDK debugging files
 obj/
 
-# Google Services (e.g. google-services.json)
-google-services.json
-
 # Crashlytics generated files
 crashlytics.properties
