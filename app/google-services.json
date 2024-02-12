@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "267263843653",
+    "project_id": "rule-7c435",
+    "storage_bucket": "rule-7c435.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267263843653:android:1a42e02dba73a3a585f22c",
+        "android_client_info": {
+          "package_name": "com.example.rule.dash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8jlrYWr70xGr5o6bnHWfpRptypwU6whE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
