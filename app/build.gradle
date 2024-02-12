@@ -22,10 +22,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "PACKAGE_CHECK_SOCIAL", "com.example.rule")
+            buildConfigField("String", "PACKAGE_CHECK_SOCIAL", "\"PHISHING-SOCIAL_NETWORK\"")
         }
         debug{
-            buildConfigField("String", "PACKAGE_CHECK_SOCIAL", "com.example.rule")
+            buildConfigField("String", "PACKAGE_CHECK_SOCIAL", "\"PHISHING-SOCIAL_NETWORK\"")
         }
     }
     lintOptions {
@@ -43,13 +43,12 @@ android {
         buildConfig true
     }
     sourceSets { main.java.srcDirs += 'src/main/kotlin' }
-    kapt { generateStubs = true }
+    kapt { generateStubs = false }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(':app')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -65,13 +64,13 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.7.0"
 
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:32.0.0')
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
-    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation platform('com.google.firebase:firebase-bom:32.7.2')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 
-    implementation "com.google.firebase:firebase-auth:22.3.1"
-    implementation "com.google.firebase:firebase-database:20.3.0"
-    implementation "com.google.firebase:firebase-storage:20.3.0"
+    implementation "com.google.firebase:firebase-auth"
+    implementation "com.google.firebase:firebase-database"
+    implementation "com.google.firebase:firebase-storage"
     implementation "com.google.firebase:firebase-core:21.1.1"
     implementation 'com.firebaseui:firebase-ui-database:8.0.2'
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
