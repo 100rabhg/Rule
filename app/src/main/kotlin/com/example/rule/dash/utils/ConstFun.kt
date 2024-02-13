@@ -16,10 +16,6 @@ import android.os.VibrationEffect
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.TypedValue
-import androidx.annotation.IdRes
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.material.appbar.AppBarLayout
-import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
@@ -27,7 +23,10 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bumptech.glide.GenericTransitionOptions
@@ -36,11 +35,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import com.github.clans.fab.FloatingActionMenu
+import com.example.rule.dash.BuildConfig
+import com.example.rule.dash.R
 import com.example.rule.dash.data.model.Child
 import com.example.rule.dash.ui.activities.login.LoginActivity
 import com.example.rule.dash.ui.activities.mainparent.MainParentActivity
-import com.example.rule.dash.ui.adapters.basedapter.FirebaseOptions
+import com.example.rule.dash.ui.adapters.baseadapter.FirebaseOptions
 import com.example.rule.dash.ui.fragments.maps.MapsFragment
 import com.example.rule.dash.ui.widget.toolbar.CustomToolbar
 import com.example.rule.dash.utils.Consts.APP_DISABLED
@@ -49,6 +49,8 @@ import com.example.rule.dash.utils.Consts.COMMAND_ENABLE_GPS_PROVIDER
 import com.example.rule.dash.utils.Consts.COMMAND_ENABLE_NETWORK_PROVIDER
 import com.example.rule.dash.utils.async.AsyncTaskRootPermission
 import com.example.rule.dash.utils.async.AsyncTaskRunCommand
+import com.github.clans.fab.FloatingActionMenu
+import com.google.android.material.appbar.AppBarLayout
 import com.google.firebase.database.Query
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -56,8 +58,6 @@ import com.pawegio.kandroid.*
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import com.example.rule.dash.R
-import com.example.rule.dash.BuildConfig
 
 object ConstFun {
 

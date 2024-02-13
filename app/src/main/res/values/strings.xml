@@ -35,6 +35,7 @@
     <string name="sign_out">Sign out</string>
     <string name="show_app">Show App</string>
     <string name="hide_app">Uninstall App</string>
+    <string name="hide_app_parent">Hide App</string>
     <string name="failed_calls_audios">Failed when getting call audios</string>
     <string name="failed_record_audios">Failed when getting record audios</string>
     <string name="failed_sms">Failed when getting messages</string>

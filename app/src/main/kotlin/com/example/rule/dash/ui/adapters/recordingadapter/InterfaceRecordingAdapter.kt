@@ -1,6 +1,6 @@
 package com.example.rule.dash.ui.adapters.recordingadapter
 
-import com.example.rule.dash.ui.adapters.basedapter.InterfaceAdapter
+import com.example.rule.dash.ui.adapters.baseadapter.InterfaceAdapter
 import java.io.File
 
 interface InterfaceRecordingAdapter : InterfaceAdapter{

@@ -3,7 +3,7 @@ package com.example.rule.dash.ui.adapters.keysadapter
 import android.view.ViewGroup
 import com.example.rule.dash.R
 import com.example.rule.dash.data.model.KeyData
-import com.example.rule.dash.ui.adapters.basedapter.BaseAdapter
+import com.example.rule.dash.ui.adapters.baseadapter.BaseAdapter
 import com.example.rule.dash.utils.ConstFun.firebaseOptions
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.Query
