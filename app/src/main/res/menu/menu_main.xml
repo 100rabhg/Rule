@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Child's action">
+    <item android:title="@string/child_s_action">
         <menu>
-            <item android:title="@string/show_app"
-                android:id="@+id/nav_show_app"/>
+            <item
+                android:id="@+id/nav_show_app"
+                android:title="@string/show_app" />
             <item
                 android:id="@+id/nav_hide_app"
                 android:title="@string/hide_app_parent" />

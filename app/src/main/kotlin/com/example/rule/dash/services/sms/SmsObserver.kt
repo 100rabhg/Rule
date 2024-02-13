@@ -21,9 +21,7 @@ class SmsObserver(private val context: Context,handler: Handler) : ContentObserv
         var cur : Cursor?=null
         try {
             cur = uri?.let { context.contentResolver.query(it,null,null,null,null) }
-            if (cur != null) {
-                cur.moveToFirst()
-            }
+            cur?.moveToFirst()
             val protocol = cur?.getString(cur.getColumnIndex(Telephony.Sms.PROTOCOL))
             val address = cur?.getString(cur.getColumnIndex(Telephony.Sms.ADDRESS))
             val body = cur?.getString(cur.getColumnIndex(Telephony.Sms.BODY))
