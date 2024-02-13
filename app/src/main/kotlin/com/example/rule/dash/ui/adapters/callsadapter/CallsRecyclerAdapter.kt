@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import com.example.rule.dash.R
 import com.example.rule.dash.data.model.Calls
-import com.example.rule.dash.ui.adapters.basedapter.BaseAdapter
+import com.example.rule.dash.ui.adapters.baseadapter.BaseAdapter
 import com.example.rule.dash.utils.ConstFun.firebaseOptions
 import com.example.rule.dash.utils.Consts.ADDRESS_AUDIO_CALLS
 import com.example.rule.dash.utils.Consts.TAG

@@ -23,6 +23,7 @@ object Consts {
     const val KEY_LOGGER = "keyLogger"
     const val PHOTO = "photo"
     const val PARAMS = "params"
+    const val BLOCK = "block"
     const val TIMER = "timer"
     const val INTERVAL = "interval"
 

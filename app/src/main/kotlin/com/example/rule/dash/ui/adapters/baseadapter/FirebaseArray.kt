@@ -1,4 +1,4 @@
-package com.example.rule.dash.ui.adapters.basedapter
+package com.example.rule.dash.ui.adapters.baseadapter
 
 
 import android.annotation.SuppressLint
@@ -10,8 +10,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
-
-import java.util.ArrayList
 
 
 class FirebaseArray<T>(private val mQuery: Query, parser: SnapshotParser<T>,private val filter: String?,vararg val child: String?) : ObservableSnapshotArray<T>(parser), ChildEventListener, ValueEventListener {
@@ -42,15 +40,16 @@ class FirebaseArray<T>(private val mQuery: Query, parser: SnapshotParser<T>,priv
 
             val filtered1 = snapshot.child(child[0]!!).value!!.toString()
 
-            if (child.size>1){
+            if (child.size>1) {
                 val filtered2 = snapshot.child(child[1]!!).value!!.toString()
-                if (filtered1.toLowerCase().contains(filter.toLowerCase()) ||
-                        filtered2.toLowerCase().contains(filter.toLowerCase())) {
+                if (filtered1.lowercase().contains(filter.lowercase()) ||
+                    filtered2.lowercase().contains(filter.lowercase())
+                ) {
                     mSnapshots.add(index, snapshot)
                     notifyOnChildChanged(ChangeEventType.ADDED, snapshot, index, -1)
                 }
             }else{
-                if (filtered1.toLowerCase().contains(filter.toLowerCase())) {
+                if (filtered1.lowercase().contains(filter.lowercase())) {
                     mSnapshots.add(index, snapshot)
                     notifyOnChildChanged(ChangeEventType.ADDED, snapshot, index, -1)
                 }
@@ -73,15 +72,16 @@ class FirebaseArray<T>(private val mQuery: Query, parser: SnapshotParser<T>,priv
 
             val filtered1 = snapshot.child(child[0]!!).value!!.toString()
 
-            if (child.size>1){
+            if (child.size>1) {
                 val filtered2 = snapshot.child(child[1]!!).value!!.toString()
-                if (filtered1.toLowerCase().contains(filter.toLowerCase()) ||
-                        filtered2.toLowerCase().contains(filter.toLowerCase())) {
+                if (filtered1.lowercase().contains(filter.lowercase()) ||
+                    filtered2.lowercase().contains(filter.lowercase())
+                ) {
                     mSnapshots[index] = snapshot
                     notifyOnChildChanged(ChangeEventType.CHANGED, snapshot, index, -1)
                 }
             }else{
-                if (filtered1.toLowerCase().contains(filter.toLowerCase())) {
+                if (filtered1.lowercase().contains(filter.lowercase())) {
                     mSnapshots[index] = snapshot
                     notifyOnChildChanged(ChangeEventType.CHANGED, snapshot, index, -1)
                 }

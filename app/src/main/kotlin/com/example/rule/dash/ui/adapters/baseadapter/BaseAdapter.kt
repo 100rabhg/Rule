@@ -1,23 +1,23 @@
-package com.example.rule.dash.ui.adapters.basedapter
+package com.example.rule.dash.ui.adapters.baseadapter
 
-import androidx.annotation.NonNull
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rule.dash.utils.Consts
 import com.firebase.ui.common.ChangeEventType
 import com.firebase.ui.database.ObservableSnapshotArray
-import com.example.rule.dash.utils.Consts
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.pawegio.kandroid.e
 
-abstract class BaseAdapter<T,VH : RecyclerView.ViewHolder>(@NonNull private var options : FirebaseOptions<T>) : RecyclerView.Adapter<VH>() , BaseInterfaceAdapter<T> {
+abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder>(private var options: FirebaseOptions<T>) :
+    RecyclerView.Adapter<VH>(), BaseInterfaceAdapter<T> {
 
     private var lastPosition = -1
 
-    private var mSnapshots : ObservableSnapshotArray<T> = options.snapshots
+    private var mSnapshots: ObservableSnapshotArray<T> = options.snapshots
 
     init {
         if (options.owner != null) options.owner!!.lifecycle.addObserver(this)

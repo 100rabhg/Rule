@@ -2,24 +2,24 @@ package com.example.rule.dash.ui.fragments.calls
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.material.appbar.AppBarLayout
-import com.github.clans.fab.FloatingActionButton
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rule.dash.R
 import com.example.rule.dash.data.model.DataDelete
 import com.example.rule.dash.data.preference.DataSharePreference.clearSelectedItem
 import com.example.rule.dash.data.preference.DataSharePreference.setSelectedItem
-import com.example.rule.dash.ui.fragments.base.BaseFragment
-import com.example.rule.dash.ui.animation.OvershootInRightAnimator
 import com.example.rule.dash.ui.adapters.callsadapter.CallsRecyclerAdapter
+import com.example.rule.dash.ui.animation.OvershootInRightAnimator
+import com.example.rule.dash.ui.fragments.base.BaseFragment
 import com.example.rule.dash.ui.widget.CustomRecyclerView
 import com.example.rule.dash.ui.widget.OnScrollListener
 import com.example.rule.dash.ui.widget.toolbar.CustomToolbar
 import com.example.rule.dash.utils.ConstFun.contentGlobalLayout
 import com.example.rule.dash.utils.ConstFun.isScrollToolbar
+import com.github.clans.fab.FloatingActionButton
+import com.google.android.material.appbar.AppBarLayout
 import com.pawegio.kandroid.hide
 import com.pawegio.kandroid.runDelayedOnUiThread
 import com.pawegio.kandroid.show
@@ -197,7 +197,7 @@ class CallsFragment : BaseFragment(R.layout.fragment_calls), InterfaceViewCalls 
     }
 
     override fun onHideFragment() {
-        if (interactor!=null) interactor.stopAudioCallHolder()
+        interactor.stopAudioCallHolder()
     }
 
     override fun onChangeHeight() {

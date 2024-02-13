@@ -1,4 +1,4 @@
-package com.example.rule.dash.ui.adapters.basedapter
+package com.example.rule.dash.ui.adapters.baseadapter
 
 import com.google.firebase.database.DatabaseError
 

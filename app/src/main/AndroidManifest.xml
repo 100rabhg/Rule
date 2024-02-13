@@ -3,19 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- location -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- storage -->
     <uses-permission android:name="android.permission.MediaStore.createWriteRequest" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <!-- calls -->
     <uses-feature android:name="android.hardware.telephony" />
+
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT"
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission
+        android:name="android.permission.CAPTURE_AUDIO_OUTPUT"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />

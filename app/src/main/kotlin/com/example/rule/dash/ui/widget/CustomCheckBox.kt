@@ -1,12 +1,12 @@
 package com.example.rule.dash.ui.widget
 
+import android.animation.ValueAnimator
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import android.graphics.Canvas
-import android.animation.ValueAnimator
 import android.view.animation.LinearInterpolator
 
 class CustomCheckBox : View {
@@ -52,14 +52,14 @@ class CustomCheckBox : View {
     private fun setChecked(checked: Boolean) {
         if (!checked) {
             hideCorrect()
-        } else if (checked) {
+        } else {
             showCheck()
         }
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(width, height, oldw, oldh)
-        w = Math.min(width - paddingLeft - paddingRight, height - paddingBottom - paddingTop)
+        w = (width - paddingLeft - paddingRight).coerceAtMost(height - paddingBottom - paddingTop)
         h = w
         cx = width / 2
         cy = height / 2

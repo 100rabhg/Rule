@@ -35,6 +35,7 @@ class SocialFragment : BaseFragment(R.layout.fragment_social), InterfaceViewSoci
 
     @Inject lateinit var interactor: InterfaceInteractorSocial<InterfaceViewSocial>
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setToolbar(toolbar,false,R.string.social,R.id.nav_clear_social)
