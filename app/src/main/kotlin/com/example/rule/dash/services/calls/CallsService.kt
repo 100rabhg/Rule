@@ -39,7 +39,12 @@ class CallsService : BaseService(), InterfaceServiceCalls {
             when (commandType) {
                 STATE_INCOMING_NUMBER -> if (phoneNumber == null) {
                     phoneNumber = getStringExtra(PHONE_NUMBER)
-                    callType = getIntExtra(TYPE_CALL,0)
+                    callType = getIntExtra(TYPE_CALL, 0)
+                    interactor.isBlockThisCall {
+                        if (it.contains(phoneNumber)) {
+                            interactor.blockCall()
+                        }
+                    }
                 }
                 STATE_CALL_START -> if (phoneNumber != null) interactor.startRecording(phoneNumber,callType)
                 STATE_CALL_END -> {
