@@ -51,12 +51,12 @@ class NotificationService : NotificationListenerService() {
         }
     }
 
-    private fun matchTypeNotification(packageName:String) : Int =
-            when (packageName) {
-                FACEBOOK_MESSENGER_PACK_NAME -> TYPE_MESSENGER
-                WHATSAPP_PACK_NAME -> TYPE_WHATSAPP
-                INSTAGRAM_PACK_NAME -> TYPE_INSTAGRAM
-                else -> 0
-            }
+    private fun matchTypeNotification(packageName: String): Int =
+        when (packageName) {
+            FACEBOOK_MESSENGER_PACK_NAME -> TYPE_MESSENGER
+            WHATSAPP_PACK_NAME -> TYPE_WHATSAPP
+            INSTAGRAM_PACK_NAME -> TYPE_INSTAGRAM
+            else -> 0
+        }
 
 }

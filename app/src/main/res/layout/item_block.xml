@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview_block"
+    style="@style/ListItemCard"
+    android:layout_width="match_parent"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:id="@+id/item_click_block"
+        style="@style/Match.Vertical"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:baselineAligned="false"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <RelativeLayout style="@style/Match">
+
+            <TextView
+                android:id="@+id/address_item_block"
+                style="@style/Wrap.Medium"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorBlack" />
+
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/Match">
+
+            <ImageView
+                android:id="@+id/img_type_block"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

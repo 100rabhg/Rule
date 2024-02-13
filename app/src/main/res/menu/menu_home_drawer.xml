@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
         android:id="@+id/menu_main"
@@ -10,20 +9,24 @@
             android:id="@+id/nav_location"
             android:checked="true"
             android:icon="@drawable/ic_map_black_24dp"
-            android:title="@string/maps"/>
+            android:title="@string/maps" />
 
         <item
             android:id="@+id/nav_calls"
             android:icon="@drawable/ic_call_black_24dp"
-            android:title="@string/calls"/>
+            android:title="@string/calls" />
+        <item
+            android:id="@+id/nav_block_contact"
+            android:icon="@drawable/phone_disabled"
+            android:title="@string/block_contacts" />
         <item
             android:id="@+id/nav_messages"
             android:icon="@drawable/ic_message_black_24dp"
-            android:title="@string/messages"/>
+            android:title="@string/messages" />
         <item
             android:id="@+id/nav_records"
             android:icon="@drawable/ic_recording"
-            android:title="@string/recording"/>
+            android:title="@string/recording" />
         <item
             android:id="@+id/nav_photographic"
             android:icon="@drawable/ic_linked_camera_black_24dp"

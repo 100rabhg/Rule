@@ -1,8 +1,8 @@
 package com.example.rule.dash.di.module
 
 import android.content.Context
-import androidx.fragment.app.FragmentManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rule.dash.di.PerActivity
 import com.example.rule.dash.ui.activities.login.InteractorLogin
@@ -14,12 +14,12 @@ import com.example.rule.dash.ui.activities.mainparent.InterfaceViewMainParent
 import com.example.rule.dash.ui.activities.register.InteractorRegister
 import com.example.rule.dash.ui.activities.register.InterfaceInteractorRegister
 import com.example.rule.dash.ui.activities.register.InterfaceViewRegister
+import com.example.rule.dash.ui.fragments.block.InteractorBlock
+import com.example.rule.dash.ui.fragments.block.InterfaceInteractorBlock
+import com.example.rule.dash.ui.fragments.block.InterfaceViewBlock
 import com.example.rule.dash.ui.fragments.calls.InteractorCalls
 import com.example.rule.dash.ui.fragments.calls.InterfaceInteractorCalls
 import com.example.rule.dash.ui.fragments.calls.InterfaceViewCalls
-import com.example.rule.dash.ui.fragments.photo.InteractorPhoto
-import com.example.rule.dash.ui.fragments.photo.InterfaceInteractorPhoto
-import com.example.rule.dash.ui.fragments.photo.InterfaceViewPhoto
 import com.example.rule.dash.ui.fragments.keylog.InteractorKeys
 import com.example.rule.dash.ui.fragments.keylog.InterfaceInteractorKeys
 import com.example.rule.dash.ui.fragments.keylog.InterfaceViewKeys
@@ -32,6 +32,9 @@ import com.example.rule.dash.ui.fragments.message.InterfaceViewMessage
 import com.example.rule.dash.ui.fragments.notifications.InteractorNotifyMessage
 import com.example.rule.dash.ui.fragments.notifications.InterfaceInteractorNotifyMessage
 import com.example.rule.dash.ui.fragments.notifications.InterfaceViewNotifyMessage
+import com.example.rule.dash.ui.fragments.photo.InteractorPhoto
+import com.example.rule.dash.ui.fragments.photo.InterfaceInteractorPhoto
+import com.example.rule.dash.ui.fragments.photo.InterfaceViewPhoto
 import com.example.rule.dash.ui.fragments.recording.InteractorRecording
 import com.example.rule.dash.ui.fragments.recording.InterfaceInteractorRecording
 import com.example.rule.dash.ui.fragments.recording.InterfaceViewRecording
@@ -70,23 +73,33 @@ class ActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
     @PerActivity
-    fun provideInterfaceInteractorRegister(interactor: InteractorRegister<InterfaceViewRegister>): InterfaceInteractorRegister<InterfaceViewRegister> = interactor
+    fun provideInterfaceInteractorRegister(interactor: InteractorRegister<InterfaceViewRegister>): InterfaceInteractorRegister<InterfaceViewRegister> =
+        interactor
 
     @Provides
     @PerActivity
-    fun provideInterfaceInteractorMaps(interactor: InteractorMaps<InterfaceViewMaps>): InterfaceInteractorMaps<InterfaceViewMaps> = interactor
+    fun provideInterfaceInteractorMaps(interactor: InteractorMaps<InterfaceViewMaps>): InterfaceInteractorMaps<InterfaceViewMaps> =
+        interactor
 
     @Provides
     @PerActivity
-    fun provideInterfaceInteractorCalls(interactor: InteractorCalls<InterfaceViewCalls>): InterfaceInteractorCalls<InterfaceViewCalls> = interactor
+    fun provideInterfaceInteractorCalls(interactor: InteractorCalls<InterfaceViewCalls>): InterfaceInteractorCalls<InterfaceViewCalls> =
+        interactor
 
     @Provides
     @PerActivity
-    fun provideInterfaceInteractorKeys(interactor: InteractorKeys<InterfaceViewKeys>): InterfaceInteractorKeys<InterfaceViewKeys> = interactor
+    fun provideInterfaceInteractorBlock(interactor: InteractorBlock<InterfaceViewBlock>): InterfaceInteractorBlock<InterfaceViewBlock> =
+        interactor
 
     @Provides
     @PerActivity
-    fun provideInterfaceInteractorMessage(interactor: InteractorMessage<InterfaceViewMessage>): InterfaceInteractorMessage<InterfaceViewMessage> = interactor
+    fun provideInterfaceInteractorKeys(interactor: InteractorKeys<InterfaceViewKeys>): InterfaceInteractorKeys<InterfaceViewKeys> =
+        interactor
+
+    @Provides
+    @PerActivity
+    fun provideInterfaceInteractorMessage(interactor: InteractorMessage<InterfaceViewMessage>): InterfaceInteractorMessage<InterfaceViewMessage> =
+        interactor
 
     @Provides
     @PerActivity

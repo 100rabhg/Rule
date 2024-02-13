@@ -30,5 +30,6 @@ interface InterfaceInteractorMainParent<V : InterfaceViewMainParent> : Interface
     fun setFragmentSetting()
     fun setFragmentNotifyMessage()
     fun setFragmentAbout()
+    fun setFragmentBlock()
 
 }
