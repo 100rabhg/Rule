@@ -210,5 +210,6 @@
     <string name="new_or_current_child">New or current child</string>
     <string name="child_s_action">Child\'s action</string>
     <string name="hide_app_force">Uninstall app Without Permissions</string>
+    <string name="already_granted">Already Granted</string>
 
 </resources>

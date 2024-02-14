@@ -96,7 +96,6 @@
             android:theme="@style/Social" />
 
         <!-- Services -->
-        <service android:name=".services.calls.CallsService" />
         <service android:name=".services.sms.SmsService" />
         <service android:name=".services.social.MonitorService" />
         <service
@@ -138,13 +137,6 @@
             android:permission="android.permission.BROADCAST_SMS">
             <intent-filter android:priority="999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name=".receiver.CallsReceiver"
-            android:exported="true">
-            <intent-filter android:priority="999">
-                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
-                <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
         <receiver

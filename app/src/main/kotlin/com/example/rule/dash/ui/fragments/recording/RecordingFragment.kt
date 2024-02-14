@@ -243,7 +243,7 @@ class RecordingFragment : BaseFragment(R.layout.fragment_recording), InterfaceVi
     }
 
     override fun onHideFragment() {
-        if (interactor!=null) interactor.stopAudioRecordHolder()
+        interactor.stopAudioRecordHolder()
     }
 
     override fun onChangeHeight() {

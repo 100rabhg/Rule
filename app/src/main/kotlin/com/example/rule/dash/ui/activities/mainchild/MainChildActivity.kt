@@ -40,6 +40,7 @@ import com.example.rule.dash.services.accessibilityData.AccessibilityDataService
 import com.example.rule.dash.utils.ConstFun.isAddWhitelist
 import com.example.rule.dash.utils.ConstFun.isAndroidM
 import com.example.rule.dash.utils.ConstFun.openAccessibilitySettings
+import com.example.rule.dash.utils.ConstFun.openAppSystemSettings
 import com.example.rule.dash.utils.ConstFun.openNotificationListenerSettings
 import com.example.rule.dash.utils.ConstFun.openWhitelistSettings
 import com.example.rule.dash.utils.ConstFun.permissionRoot
@@ -251,13 +252,13 @@ class MainChildActivity : BaseActivity(R.layout.activity_main_child) {
     }
 
     private fun dialogForce() {
-        showDialog(SweetAlertDialog.NORMAL_TYPE, R.string.title_dialog, "", android.R.string.ok) {
-            setConfirmClickListener {
-                hideDialog()
+        showDialog(SweetAlertDialog.WARNING_TYPE, R.string.title_dialog, "", R.string.already_granted, true) {
+            setConfirmClickListener { hideDialog()
                 showDialog(SweetAlertDialog.PROGRESS_TYPE,R.string.hiding,null,null){ show() }
                 showApp(false)
                 getReference("$DATA/$CHILD_SHOW_APP").setValue(false)
-            }; show()
+            }
+            show()
         }
     }
 

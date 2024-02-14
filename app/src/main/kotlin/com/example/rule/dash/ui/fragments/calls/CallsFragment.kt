@@ -196,10 +196,6 @@ class CallsFragment : BaseFragment(R.layout.fragment_calls), InterfaceViewCalls 
         }
     }
 
-    override fun onHideFragment() {
-        interactor.stopAudioCallHolder()
-    }
-
     override fun onChangeHeight() {
         contentGlobalLayout(content,appBar)
         recyclerPosition()
@@ -207,7 +203,6 @@ class CallsFragment : BaseFragment(R.layout.fragment_calls), InterfaceViewCalls 
 
     override fun onStop() {
         interactor.stopRecyclerAdapter()
-        interactor.stopAudioCallHolder()
         super.onStop()
     }
 

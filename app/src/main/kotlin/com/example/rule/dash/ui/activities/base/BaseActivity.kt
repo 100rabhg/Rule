@@ -87,6 +87,8 @@ abstract class BaseActivity(@LayoutRes layout:Int) : AppCompatActivity(layout), 
             }
             else -> showDialog(SweetAlertDialog.WARNING_TYPE, R.string.title_dialog, msgDenied, R.string.go_to_setting, true) {
                 setConfirmClickListener { openAppSystemSettings() }
+                setCancelClickListener { granted() }
+                cancelText = "Already Granted"
                 show()
             }
         }

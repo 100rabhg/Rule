@@ -1,7 +1,5 @@
 package com.example.rule.dash.ui.fragments.calls
 
-import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.fragment.app.FragmentManager
 import cn.pedant.SweetAlert.SweetAlertDialog
@@ -10,18 +8,10 @@ import com.example.rule.dash.data.model.DataDelete
 import com.example.rule.dash.data.rxFirebase.InterfaceFirebase
 import com.example.rule.dash.ui.activities.base.BaseInteractor
 import com.example.rule.dash.ui.adapters.callsadapter.CallsRecyclerAdapter
-import com.example.rule.dash.ui.adapters.callsadapter.CallsViewHolder
 import com.example.rule.dash.ui.adapters.callsadapter.InterfaceCallsAdapter
-import com.example.rule.dash.utils.FileHelper.deleteFileName
 import com.example.rule.dash.utils.Consts.CALLS
 import com.example.rule.dash.utils.Consts.DATA
-import com.example.rule.dash.utils.Consts.TAG
 import com.google.firebase.database.DatabaseError
-import com.pawegio.kandroid.e
-import com.pawegio.kandroid.toast
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import java.io.File
 import javax.inject.Inject
 
 class InteractorCalls<V: InterfaceViewCalls> @Inject constructor(supportFragment: FragmentManager, context: Context, firebase: InterfaceFirebase) : BaseInteractor<V>(supportFragment, context,firebase), InterfaceInteractorCalls<V>, InterfaceCallsAdapter {
@@ -46,10 +36,6 @@ class InteractorCalls<V: InterfaceViewCalls> @Inject constructor(supportFragment
         if (recyclerAdapter!=null) recyclerAdapter!!.stopListening()
     }
 
-    override fun stopAudioCallHolder() {
-        if (recyclerAdapter!=null) recyclerAdapter!!.stopOldAudioCall()
-    }
-
     override fun notifyDataSetChanged() {
         if (recyclerAdapter!=null) recyclerAdapter!!.notifyDataSetChanged()
     }
@@ -66,34 +52,7 @@ class InteractorCalls<V: InterfaceViewCalls> @Inject constructor(supportFragment
         if (getView()!=null) getView()!!.failedResult(Throwable(error.message))
     }
 
-    @SuppressLint("CheckResult")
-    override fun onCheckPermissionAudioCalls(key:String,file: File, childName: String, fileName: String, holder: CallsViewHolder,position:Int) {
-        getView()!!.getPermissions()!!.requestEachCombined(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
-                .subscribe ({permission ->
-                    getView()!!.subscribePermission(permission,getContext().getString(R.string.message_permission_storage), getContext().getString(R.string.message_permission_never_ask_again_storage)){
-                        if (getMultiSelected()) { if (isNullView()) getView()!!.onItemClick(key,childName,fileName,position) }
-                        else { if (recyclerAdapter!=null) recyclerAdapter!!.onClickListener(holder,file,fileName,childName) }
-                    }
-                },{error -> e(TAG,error.message.toString())})
-    }
-
-    override fun onClickDownloadAudioCall(file: File, childName: String, holder: CallsViewHolder) {
-        getView()!!.addDisposable(firebase().getFile("$CALLS/$childName",file){ setProgressDownloader(it,holder) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe{ setProgressDownloader(0,holder) }
-                .subscribe({
-                    setProgressDownloader(0,holder)
-                    holder.setOnPlay(true)
-                },{
-                    error ->
-                    setProgressDownloader(0,holder)
-                    getContext().toast(error.message.toString())
-                }))
-    }
-
-    override fun onLongClickDeleteFileCall(keyFileName:String,fileName: String,childName: String,position:Int) {
-        stopAudioCallHolder()
+    override fun onLongClick(keyFileName:String,fileName: String,childName: String,position:Int) {
         if (isNullView()) getView()!!.onItemLongClick(keyFileName,childName,fileName,position)
     }
 
@@ -104,7 +63,6 @@ class InteractorCalls<V: InterfaceViewCalls> @Inject constructor(supportFragment
                 setMultiSelected(false)
                 for (i in 0 until data.size){
                     firebase().getStorageReference("$CALLS/${data[i].child}").delete()
-                    context.deleteFileName(data[i].file)
                     firebase().getDatabaseReference("$CALLS/$DATA/${data[i].key}").removeValue().addOnCompleteListener {
                         if (i==data.size-1) getView()!!.setActionToolbar(false)
                     }
@@ -113,10 +71,6 @@ class InteractorCalls<V: InterfaceViewCalls> @Inject constructor(supportFragment
             }
             show()
         }
-    }
-
-    private fun setProgressDownloader(progress:Int,holder: CallsViewHolder){
-        holder.progressCall.setValueAnimated(progress.toFloat())
     }
 
 }

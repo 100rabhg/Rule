@@ -59,6 +59,8 @@ object Consts {
     const val TYPE_SMS = "smsType"
     const val TYPE_SMS_OUTGOING = 1
     const val TYPE_SMS_INCOMING = 2
+    const val CALL_NOT_BLOCKED = 0
+    const val CALL_BLOCKED = 1
 
     const val SMS_ADDRESS = "smsAddress"
     const val SMS_BODY = "smsBody"
