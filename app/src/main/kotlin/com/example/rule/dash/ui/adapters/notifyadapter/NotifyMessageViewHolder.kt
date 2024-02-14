@@ -1,17 +1,17 @@
 package com.example.rule.dash.ui.adapters.notifyadapter
 
-import androidx.core.content.ContextCompat
-import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.example.rule.dash.R
-import com.example.rule.dash.data.preference.DataSharePreference.getSelectedItem
 import com.example.rule.dash.data.model.NotificationMessages
-import com.example.rule.dash.utils.ConstFun.setImageUrl
+import com.example.rule.dash.data.preference.DataSharePreference.getSelectedItem
 import com.example.rule.dash.utils.ConstFun.setImageId
+import com.example.rule.dash.utils.ConstFun.setImageUrl
 import com.example.rule.dash.utils.Consts.TYPE_INSTAGRAM
 import com.example.rule.dash.utils.Consts.TYPE_MESSENGER
 import com.example.rule.dash.utils.Consts.TYPE_WHATSAPP

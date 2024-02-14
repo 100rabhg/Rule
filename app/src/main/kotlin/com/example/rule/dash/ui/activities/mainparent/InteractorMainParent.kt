@@ -6,13 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.rule.dash.R
+import com.example.rule.dash.data.preference.DataSharePreference.childPhoto
+import com.example.rule.dash.data.preference.DataSharePreference.timeFinishApp
 import com.example.rule.dash.data.rxFirebase.InterfaceFirebase
 import com.example.rule.dash.ui.activities.base.BaseInteractor
-import com.example.rule.dash.utils.MyCountDownTimer
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.storage.StorageReference
-import com.example.rule.dash.data.preference.DataSharePreference.timeFinishApp
-import com.example.rule.dash.data.preference.DataSharePreference.childPhoto
 import com.example.rule.dash.ui.fragments.base.IOnFragmentListener
 import com.example.rule.dash.ui.fragments.calls.CallsFragment
 import com.example.rule.dash.ui.fragments.keylog.KeysFragment
@@ -25,7 +22,10 @@ import com.example.rule.dash.ui.fragments.setting.SettingFragment
 import com.example.rule.dash.ui.fragments.social.SocialFragment
 import com.example.rule.dash.utils.Consts.CHILD_PHOTO
 import com.example.rule.dash.utils.Consts.DATA
+import com.example.rule.dash.utils.MyCountDownTimer
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.storage.StorageReference
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.io.File
@@ -97,22 +97,22 @@ class InteractorMainParent<V : InterfaceViewMainParent> @Inject constructor(supp
 
     override fun setFragmentLocation() {
         setCheckedNavigation(R.id.nav_location)
-        setFragment(MapsFragment(),MapsFragment.TAG)
+        setFragment(MapsFragment(), MapsFragment.TAG)
     }
 
     override fun setFragmentCalls() {
         setCheckedNavigation(R.id.nav_calls)
-        setFragment(CallsFragment(),CallsFragment.TAG)
+        setFragment(CallsFragment(), CallsFragment.TAG)
     }
 
     override fun setFragmentSms() {
         setCheckedNavigation(R.id.nav_messages)
-        setFragment(MessageFragment(),MessageFragment.TAG)
+        setFragment(MessageFragment(), MessageFragment.TAG)
     }
 
     override fun setFragmentRecords() {
         setCheckedNavigation(R.id.nav_records)
-        setFragment(RecordingFragment(),RecordingFragment.TAG)
+        setFragment(RecordingFragment(), RecordingFragment.TAG)
     }
 
     override fun setFragmentPhotos() {

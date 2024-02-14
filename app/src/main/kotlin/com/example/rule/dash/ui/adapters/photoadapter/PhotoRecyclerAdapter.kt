@@ -4,14 +4,14 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import com.example.rule.dash.R
 import com.example.rule.dash.data.model.Photo
-import com.example.rule.dash.ui.adapters.basedapter.BaseAdapter
+import com.example.rule.dash.ui.adapters.baseadapter.BaseAdapter
 import com.example.rule.dash.utils.ConstFun.firebaseOptions
+import com.example.rule.dash.utils.Consts.TAG
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.Query
-import com.pawegio.kandroid.inflateLayout
-import com.example.rule.dash.utils.Consts.TAG
 import com.jakewharton.rxbinding2.view.RxView
 import com.pawegio.kandroid.e
+import com.pawegio.kandroid.inflateLayout
 
 class PhotoRecyclerAdapter(private val query: Query) : BaseAdapter<Photo, PhotoViewHolder>(firebaseOptions(query)) {
 

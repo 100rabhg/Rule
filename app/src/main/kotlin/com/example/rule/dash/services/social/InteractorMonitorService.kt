@@ -3,7 +3,6 @@ package com.example.rule.dash.services.social
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import com.example.rule.dash.data.rxFirebase.InterfaceFirebase
 import com.example.rule.dash.receiver.MonitorReceiver
 import com.example.rule.dash.utils.Consts.CHILD_PERMISSION
@@ -25,12 +24,9 @@ class InteractorMonitorService @Inject constructor(private val context: Context,
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (!it) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                            val intent = Intent(context,MonitorReceiver::class.java)
-                            intent.action = RESTART_MONITOR_RECEIVER
-                            context.sendBroadcast(intent)
-                        }else context.sendBroadcast(Intent(RESTART_MONITOR_RECEIVER))
-
+                        val intent = Intent(context, MonitorReceiver::class.java)
+                        intent.action = RESTART_MONITOR_RECEIVER
+                        context.sendBroadcast(intent)
                     }
                 }, { e(TAG, it.message.toString()) })
     }

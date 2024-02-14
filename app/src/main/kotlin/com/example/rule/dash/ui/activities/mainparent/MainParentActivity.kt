@@ -6,33 +6,26 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.navigation.NavigationView
-import androidx.core.view.GravityCompat
-import androidx.core.view.ViewCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.widget.PopupMenu
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.PopupMenu
+import androidx.core.view.GravityCompat
+import androidx.core.view.ViewCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.rule.dash.R
 import com.example.rule.dash.data.model.Child
 import com.example.rule.dash.data.preference.DataSharePreference.childSelected
 import com.example.rule.dash.data.preference.DataSharePreference.clearAll
 import com.example.rule.dash.data.preference.DataSharePreference.deviceChildSelected
-import com.example.rule.dash.ui.activities.base.BaseActivity
-import com.example.rule.dash.ui.activities.login.LoginActivity
-import com.example.rule.dash.utils.ConstFun.startAnimateActivity
-import com.example.rule.dash.utils.Consts.CALLS
-import com.example.rule.dash.utils.Consts.DATA
-import com.example.rule.dash.utils.Consts.KEY_LOGGER
-import com.example.rule.dash.utils.Consts.PHOTO
-import com.example.rule.dash.utils.Consts.SMS
 import com.example.rule.dash.data.preference.DataSharePreference.finishAppState
 import com.example.rule.dash.data.preference.DataSharePreference.listChild
 import com.example.rule.dash.data.preference.DataSharePreference.lockPin
 import com.example.rule.dash.data.preference.DataSharePreference.lockState
+import com.example.rule.dash.ui.activities.base.BaseActivity
 import com.example.rule.dash.ui.activities.lock.LockActivity
+import com.example.rule.dash.ui.activities.login.LoginActivity
 import com.example.rule.dash.ui.fragments.base.IOnFragmentListener
 import com.example.rule.dash.ui.fragments.calls.CallsFragment
 import com.example.rule.dash.ui.fragments.keylog.KeysFragment
@@ -43,29 +36,36 @@ import com.example.rule.dash.ui.fragments.photo.PhotoFragment
 import com.example.rule.dash.ui.fragments.recording.RecordingFragment
 import com.example.rule.dash.ui.fragments.setting.SettingFragment
 import com.example.rule.dash.ui.fragments.social.SocialFragment
-import com.example.rule.dash.utils.Consts.RECORDING
-import com.example.rule.dash.utils.FileHelper.deleteAllFile
-import com.example.rule.dash.utils.FileHelper.getUriPath
-import com.pawegio.kandroid.longToast
 import com.example.rule.dash.utils.ConstFun.find
 import com.example.rule.dash.utils.ConstFun.listToStringChild
 import com.example.rule.dash.utils.ConstFun.openGallery
+import com.example.rule.dash.utils.ConstFun.startAnimateActivity
 import com.example.rule.dash.utils.ConstFun.startMain
 import com.example.rule.dash.utils.ConstFun.stringToListChild
 import com.example.rule.dash.utils.Consts.ADDRESS_AUDIO_CALLS
 import com.example.rule.dash.utils.Consts.ADDRESS_AUDIO_RECORD
+import com.example.rule.dash.utils.Consts.CALLS
 import com.example.rule.dash.utils.Consts.CHILD_NAME
 import com.example.rule.dash.utils.Consts.CHILD_PHOTO
 import com.example.rule.dash.utils.Consts.CHILD_SHOW_APP
 import com.example.rule.dash.utils.Consts.CHILD_SOCIAL_MS
+import com.example.rule.dash.utils.Consts.DATA
 import com.example.rule.dash.utils.Consts.DEVICE_NAME
+import com.example.rule.dash.utils.Consts.KEY_LOGGER
 import com.example.rule.dash.utils.Consts.NOTIFICATION_MESSAGE
+import com.example.rule.dash.utils.Consts.PHOTO
+import com.example.rule.dash.utils.Consts.RECORDING
+import com.example.rule.dash.utils.Consts.SMS
 import com.example.rule.dash.utils.Consts.SOCIAL
 import com.example.rule.dash.utils.Consts.TAG
 import com.example.rule.dash.utils.Dialogs.showDialogAccount
+import com.example.rule.dash.utils.FileHelper.deleteAllFile
+import com.example.rule.dash.utils.FileHelper.getUriPath
 import com.example.rule.dash.utils.HomeWatcher
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
 import com.pawegio.kandroid.e
+import com.pawegio.kandroid.longToast
 import kotterknife.bindView
 import java.io.File
 import javax.inject.Inject
@@ -275,8 +275,9 @@ class MainParentActivity : BaseActivity(R.layout.activity_main_parent), Interfac
         if (requestCode == 100 && resultCode == Activity.RESULT_OK){
             try {
                 if (data!=null) {
-                    if (dialog!=null) dialog!!.dismiss()
-                    interactorParent.uploadPhotoChild(File(data.data!!.getUriPath(this)))
+                    if (dialog != null) dialog!!.dismiss()
+                    data.data!!.getUriPath(this)?.let { File(it) }
+                        ?.let { interactorParent.uploadPhotoChild(it) }
                 }
             } catch (t:Throwable){
                 showMessage(t.message.toString())

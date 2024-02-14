@@ -3,8 +3,8 @@ package com.example.rule.dash.services.calls
 import android.content.Context
 import android.media.MediaRecorder
 import android.net.Uri
-import com.example.rule.dash.data.rxFirebase.InterfaceFirebase
 import com.example.rule.dash.data.model.Calls
+import com.example.rule.dash.data.rxFirebase.InterfaceFirebase
 import com.example.rule.dash.services.base.BaseInteractorService
 import com.example.rule.dash.utils.ConstFun.getDateTime
 import com.example.rule.dash.utils.ConstFun.isAndroidM
@@ -12,9 +12,9 @@ import com.example.rule.dash.utils.Consts.ADDRESS_AUDIO_CALLS
 import com.example.rule.dash.utils.Consts.CALLS
 import com.example.rule.dash.utils.Consts.DATA
 import com.example.rule.dash.utils.FileHelper
-import com.example.rule.dash.utils.FileHelper.getFileNameCall
 import com.example.rule.dash.utils.FileHelper.getContactName
 import com.example.rule.dash.utils.FileHelper.getDurationFile
+import com.example.rule.dash.utils.FileHelper.getFileNameCall
 import com.example.rule.dash.utils.FileHelper.getFilePath
 import com.example.rule.dash.utils.MediaRecorderUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -60,12 +60,13 @@ class InteractorCalls<S : InterfaceServiceCalls> @Inject constructor(context: Co
         getService()!!.addDisposable(firebase().putFile("$CALLS/$dateNumber", uri)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ setPushName() }, { deleteFile() }))
+            .subscribe({ setPushName() }, { deleteFile() })
+        )
     }
 
     private fun setPushName() {
         val duration = getDurationFile(fileName!!)
-        val calls = Calls(contact, phoneNumber, dateTime, duration,type)
+        val calls = Calls(contact, phoneNumber, dateTime, duration, type)
         firebase().getDatabaseReference("$CALLS/$DATA").push().setValue(calls)
         deleteFile()
     }

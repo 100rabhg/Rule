@@ -11,7 +11,12 @@ class AsyncTaskRunCommand(private val onPreFunc: (() -> Unit)? = null,
         onPreFunc?.invoke()
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated(
+        "Deprecated in Java", ReplaceWith(
+            "Dash.root.runCommand(params[0]).result",
+            "com.example.rule.app.Dash"
+        )
+    )
     override fun doInBackground(vararg params: String?): Boolean {
         return Dash.root.runCommand(params[0]).result
     }

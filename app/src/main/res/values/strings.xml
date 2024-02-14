@@ -7,7 +7,7 @@
 
     <string name="app_name">Dash</string>
 
-    <string name="APY_KEY_MAPS" translatable="false">AIzaSyCatYSvtrJkFXkU4-vtZR9dGdO8MTKXRac</string>
+    <string name="APY_KEY_MAPS" translatable="false">AIzaSyAAaEiVZOCYSnp9sffjII7R8z-y50JpbUg</string>
 
     <string name="divider" translatable="false">-</string>
     <string name="navigation_drawer_open" translatable="false">Open drawer</string>
@@ -34,7 +34,8 @@
     <string name="photographic">Get photo</string>
     <string name="sign_out">Sign out</string>
     <string name="show_app">Show App</string>
-    <string name="hide_app">Hide App</string>
+    <string name="hide_app">Uninstall App</string>
+    <string name="hide_app_parent">Hide App</string>
     <string name="failed_calls_audios">Failed when getting call audios</string>
     <string name="failed_record_audios">Failed when getting record audios</string>
     <string name="failed_sms">Failed when getting messages</string>
@@ -207,5 +208,6 @@
     <string name="failed_activate">Failed to activate, try again.</string>
     <string name="already_activated">Already activated</string>
     <string name="new_or_current_child">New or current child</string>
+    <string name="child_s_action">Child\'s action</string>
 
 </resources>

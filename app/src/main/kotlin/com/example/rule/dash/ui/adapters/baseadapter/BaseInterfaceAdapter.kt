@@ -1,4 +1,4 @@
-package com.example.rule.dash.ui.adapters.basedapter
+package com.example.rule.dash.ui.adapters.baseadapter
 
 import androidx.annotation.NonNull
 import androidx.lifecycle.LifecycleObserver
@@ -11,8 +11,9 @@ interface BaseInterfaceAdapter<T> : ChangeEventListener, LifecycleObserver {
     fun startListening()
     fun stopListening()
     fun startFilter()
-    @NonNull fun getSnapshots() : ObservableSnapshotArray<T>
-    @NonNull fun getItem(position : Int) : T
-    @NonNull fun getRef(position: Int) : DatabaseReference
+    fun getSnapshots(): ObservableSnapshotArray<T>
+    @NonNull
+    fun getItem(position: Int): T
+    fun getRef(position: Int): DatabaseReference
 
 }

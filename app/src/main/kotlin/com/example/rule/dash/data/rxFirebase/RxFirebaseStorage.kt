@@ -19,11 +19,11 @@ object RxFirebaseStorage {
     }
 
     fun StorageReference.rxPutFile(uri: Uri,progress:((progress:Int)->Unit)?=null): Single<UploadTask.TaskSnapshot> {
-        return Single.create<UploadTask.TaskSnapshot> { emitter ->
+        return Single.create { emitter ->
             val taskSnapshotStorageTask = putFile(uri)
-                    .addOnSuccessListener { taskSnapshot -> emitter.onSuccess(taskSnapshot) }
-                    .addOnFailureListener { error -> if (!emitter.isDisposed) emitter.onError(error) }
-                    .addOnProgressListener { if (progress!=null) progress(((100.0 * it.bytesTransferred) / it.totalByteCount).toInt()) }
+                .addOnSuccessListener { taskSnapshot -> emitter.onSuccess(taskSnapshot) }
+                .addOnFailureListener { error -> if (!emitter.isDisposed) emitter.onError(error) }
+                .addOnProgressListener { if (progress != null) progress(((100.0 * it.bytesTransferred) / it.totalByteCount).toInt()) }
             emitter.setCancellable { taskSnapshotStorageTask.cancel() }
         }
     }
