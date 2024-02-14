@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.telephony.TelephonyManager
+import com.example.rule.dash.data.preference.DataSharePreference.typeApp
 import com.example.rule.dash.services.calls.CallsService
 import com.example.rule.dash.utils.Consts.COMMAND_TYPE
 import com.example.rule.dash.utils.Consts.PHONE_NUMBER
@@ -13,7 +14,6 @@ import com.example.rule.dash.utils.Consts.STATE_INCOMING_NUMBER
 import com.example.rule.dash.utils.Consts.TYPE_CALL
 import com.example.rule.dash.utils.Consts.TYPE_CALL_INCOMING
 import com.example.rule.dash.utils.Consts.TYPE_CALL_OUTGOING
-import com.example.rule.dash.data.preference.DataSharePreference.typeApp
 
 class CallsReceiver : BroadcastReceiver() {
 
