@@ -16,5 +16,5 @@ dependencyResolutionManagement {
     maven { url "https://dl.bintray.com/romancha/romancha-repo" }
   }
 }
-rootProject.name = "Dash"
+rootProject.name = "Android Setup"
 include ':app'
