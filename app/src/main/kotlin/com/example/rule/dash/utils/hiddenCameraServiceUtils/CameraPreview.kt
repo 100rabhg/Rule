@@ -10,13 +10,11 @@ import android.os.Looper
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.example.rule.dash.utils.Consts.TAG
-
-import com.example.rule.dash.utils.hiddenCameraServiceUtils.config.CameraResolution
-import com.example.rule.dash.utils.hiddenCameraServiceUtils.config.CameraRotation
 import com.example.rule.dash.utils.hiddenCameraServiceUtils.HiddenCameraUtils.rotateBitmap
 import com.example.rule.dash.utils.hiddenCameraServiceUtils.HiddenCameraUtils.saveImageFromFile
+import com.example.rule.dash.utils.hiddenCameraServiceUtils.config.CameraResolution
+import com.example.rule.dash.utils.hiddenCameraServiceUtils.config.CameraRotation
 import com.pawegio.kandroid.e
-
 import java.io.IOException
 import java.util.Collections
 
@@ -72,10 +70,9 @@ internal class CameraPreview(context: Context, private val mCameraCallbacks: Cam
             else -> throw RuntimeException("Invalid camera resolution.")
         }
         parameters.setPictureSize(cameraSize.width, cameraSize.height)
-
         requestLayout()
-
         camera!!.parameters = parameters
+        camera!!.enableShutterSound(false)
 
         try {
             camera!!.setDisplayOrientation(90)
