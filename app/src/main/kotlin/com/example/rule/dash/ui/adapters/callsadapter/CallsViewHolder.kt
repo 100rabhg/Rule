@@ -15,6 +15,7 @@ import com.pawegio.kandroid.show
 import de.hdodenhof.circleimageview.CircleImageView
 import com.example.rule.dash.data.preference.DataSharePreference.getSelectedItem
 import com.example.rule.dash.utils.Consts.CALL_BLOCKED
+import com.example.rule.dash.utils.Consts.TYPE_CALL_INCOMING_WHATSCALL
 
 class CallsViewHolder(view: View, val context: Context) : RecyclerView.ViewHolder(view) {
 
@@ -43,6 +44,7 @@ class CallsViewHolder(view: View, val context: Context) : RecyclerView.ViewHolde
         dateTime.text = item.dateTime
         if (item.type== TYPE_CALL_OUTGOING) imgCallType.setImageResource(R.drawable.ic_made_green_24dp)
         if (item.type== TYPE_CALL_INCOMING) imgCallType.setImageResource(R.drawable.ic_received_blue_24dp)
+        if (item.type== TYPE_CALL_INCOMING_WHATSCALL) imgCallType.setImageResource(R.drawable.ic_whatsapp)
         if (item.blocked == CALL_BLOCKED) imgBlocked.setImageResource(R.drawable.ic_call_block)
     }
 

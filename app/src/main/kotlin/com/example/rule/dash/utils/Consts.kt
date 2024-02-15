@@ -56,6 +56,9 @@ object Consts {
     const val TYPE_CALL = "callType"
     const val TYPE_CALL_OUTGOING = 1
     const val TYPE_CALL_INCOMING = 2
+    const val TYPE_CALL_INCOMING_WHATSCALL = 3
+    const val TYPE_CALL_INCOMING_OUTGOING = 4
+
     const val TYPE_SMS = "smsType"
     const val TYPE_SMS_OUTGOING = 1
     const val TYPE_SMS_INCOMING = 2

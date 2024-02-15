@@ -4,6 +4,7 @@ import android.os.Build
 import android.telecom.Call
 import android.telecom.CallScreeningService
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.rule.dash.data.model.Calls
 import com.example.rule.dash.data.preference.DataSharePreference.childSelected
 import com.example.rule.dash.data.preference.DataSharePreference.typeApp
@@ -28,45 +29,53 @@ class MyCallScreeningService : CallScreeningService() {
     override fun onScreenCall(callDetails: Call.Details) {
         // Check if call is incoming and get the phone number
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val incomingNumber = extractPhoneNumber(callDetails)
-            Log.d("MyCallScreeningService", "Active Call = $incomingNumber")
-            val type = if (callDetails.callDirection == Call.Details.DIRECTION_INCOMING) {
-                TYPE_CALL_OUTGOING
-            }else{
-                TYPE_CALL_INCOMING
-            }
-            val blockList = mutableListOf<String>()
-            if (user != null && !typeApp) {
-                db.collection("users").document(user!!.uid).collection("block")
-                    .whereEqualTo("block", true).get().addOnSuccessListener{ documents ->
-                        for (document in documents) {
-                            document.getString("number")?.let { blockList.add(it) }
-                        }
-                        var blockCall = false
-                        if(incomingNumber != null && blockList.any { incomingNumber.endsWith(it)}){
-                            Log.d("MyCallScreeningService", "block hit at number:$incomingNumber on list $blockList")
-                            blockCall = true
-                        }
-                        respondBlock(blockCall, callDetails)
-                        val calls = Calls(getContactName(incomingNumber), incomingNumber, ConstFun.getDateTime(), type, CALL_BLOCKED)
-                        uploadCall(calls)
-                    }.addOnFailureListener{
-                        it.printStackTrace()
-                        respondBlock(false, callDetails)
-                        val calls = Calls(getContactName(incomingNumber), incomingNumber, ConstFun.getDateTime(), type, CALL_NOT_BLOCKED)
-                        uploadCall(calls)
-                    }
-            }
-            else{
-                respondBlock(false, callDetails)
-                val calls = Calls(getContactName(incomingNumber), incomingNumber, ConstFun.getDateTime(), type, CALL_NOT_BLOCKED)
-                uploadCall(calls)
-            }
+            checkBlock(callDetails)
         }
     }
 
     private fun uploadCall(calls: Calls){
         user?.let { Firebase.database.getReference(Consts.USER).child(it.uid).child(childSelected).child("${Consts.CALLS}/${Consts.DATA}").push().setValue(calls) }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun checkBlock(callDetails :  Call.Details){
+        val blockList = mutableListOf<String>()
+        val type = getCallType(callDetails)
+        val incomingNumber = extractPhoneNumber(callDetails)
+        Log.d("MyCallScreeningService", "Active Call = $incomingNumber")
+        if (user != null && !typeApp) {
+            db.collection("users").document(user!!.uid).collection("block")
+                .whereEqualTo("block", true).get().addOnSuccessListener{ documents ->
+                    for (document in documents) {
+                        document.getString("number")?.let { blockList.add(it) }
+                    }
+
+                    var blockCall = false
+
+                    if(incomingNumber != null && blockList.any { incomingNumber.endsWith(it)}){
+                        Log.d("MyCallScreeningService", "block hit at number:$incomingNumber on list $blockList")
+                        blockCall = true
+                    }
+
+                    respondBlock(blockCall, callDetails)
+                    val blockCallType = if(blockCall) CALL_BLOCKED else CALL_NOT_BLOCKED
+                    val calls = Calls(getContactName(incomingNumber), incomingNumber, ConstFun.getDateTime(), type, blockCallType)
+                    uploadCall(calls)
+                }.addOnFailureListener{
+                    it.printStackTrace()
+                    respondBlock(false, callDetails)
+                    val calls = Calls(getContactName(incomingNumber), incomingNumber, ConstFun.getDateTime(), type, CALL_NOT_BLOCKED)
+                    uploadCall(calls)
+                }
+        }
+        else{
+            respondBlock(false, callDetails)
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun getCallType(callDetails :  Call.Details) : Int {
+        return if (callDetails.callDirection == Call.Details.DIRECTION_INCOMING) TYPE_CALL_INCOMING else TYPE_CALL_OUTGOING
     }
 
     private fun respondBlock(isBlock : Boolean, callDetails : Call.Details){
