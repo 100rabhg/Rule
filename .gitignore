@@ -18,6 +18,7 @@ local.properties
 # Gradle files
 .gradle/
 build/
+release/
 
 # Android Studio navigation files
 .navigation/
@@ -30,6 +31,7 @@ proguard/
 
 # Keystore files
 *.jks
+ImpApkCreateFile.txt
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
