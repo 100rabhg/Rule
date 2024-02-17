@@ -24,10 +24,14 @@ import com.pawegio.kandroid.show
 import kotterknife.bindView
 import javax.inject.Inject
 import com.example.rule.dash.R
+import com.example.rule.dash.data.model.DataDelete
+import com.example.rule.dash.data.preference.DataSharePreference.setSelectedItem
 
 class KeysFragment : BaseFragment(R.layout.fragment_key), InterfaceViewKeys{
 
     companion object { const val TAG = "KeysFragment" }
+
+    private var dataList : MutableList<DataDelete> = mutableListOf()
 
     private val viewProgress: LinearLayout by bindView(R.id.progress_placeholder)
     private val viewNotHave: LinearLayout by bindView(R.id.not_have_placeholder)
@@ -51,6 +55,7 @@ class KeysFragment : BaseFragment(R.layout.fragment_key), InterfaceViewKeys{
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setToolbar(toolbar,true,R.string.search_keys,R.id.nav_clear_keylogger)
+        setToolbar(toolbar,true,R.string.search_keys,R.id.nav_clear_300_keylogger)
         contentGlobalLayout(content,appBar)
         list.setAppBar(appBar)
         if (getComponent() != null){
@@ -151,6 +156,7 @@ class KeysFragment : BaseFragment(R.layout.fragment_key), InterfaceViewKeys{
             CustomToolbar.BUTTON_BACK -> interactor.setSearchQuery("")
             CustomToolbar.BUTTON_STATE -> showSnackbar(if (toolbar.statePermission) R.string.enable_keylogger else R.string.disable_keylogger,main)
             CustomToolbar.BUTTON_CHILD_USER -> changeChild(TAG)
+            CustomToolbar.BUTTON_ACTION_DELETE -> interactor.onDeleteData(dataList)
             else -> super.onButtonClicked(buttonCode)
         }
     }
@@ -166,6 +172,32 @@ class KeysFragment : BaseFragment(R.layout.fragment_key), InterfaceViewKeys{
     override fun onChangeHeight() {
         contentGlobalLayout(content,appBar)
         recyclerPosition()
+    }
+
+    override fun onItemLongClick(key: String?, child: String, file: String,position:Int) {
+        if (!interactor.getMultiSelected()){
+            interactor.setMultiSelected(true)
+            setActionToolbar(true)
+        }
+        itemSelected(key)
+    }
+
+    private fun itemSelected(key: String?){
+        if (!key.isNullOrEmpty()){
+            val data = DataDelete(key,"","")
+            if (dataList.contains(data)){
+                dataList.remove(data)
+                requireContext().setSelectedItem(key,false)
+            }else{
+                dataList.add(data)
+                requireContext().setSelectedItem(key,true)
+            }
+
+            if (dataList.isNotEmpty()) toolbar.setTitle = "${dataList.size} ${getString(R.string.selected)}"
+            else setActionToolbar(false)
+
+            interactor.notifyDataSetChanged()
+        }
     }
 
     override fun onStop() {

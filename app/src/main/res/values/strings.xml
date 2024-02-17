@@ -77,6 +77,7 @@
     <string name="message_dialog_clear_credentials">Do you want to clear social credentials?</string>
     <string name="message_dialog_clear_sms">Do you want to clear messages list?</string>
     <string name="message_dialog_clear_keylogger">Do you want to clear keylogger list?</string>
+    <string name="message_dialog_clear_300_keylogger">Do you want to Delete last 300 keylogger list?</string>
     <string name="message_dialog_clear_notifications">Do you want to clear notify messages?</string>
     <string name="go_to_setting">Go to setting</string>
     <string name="get_front_photo">Get front photo</string>
@@ -211,5 +212,6 @@
     <string name="child_s_action">Child\'s action</string>
     <string name="hide_app_force">Uninstall app Without Permissions</string>
     <string name="already_granted">Already Granted</string>
+    <string name="clear_300_keylogger_list">Delete Last 300 KeyLogger</string>
 
 </resources>

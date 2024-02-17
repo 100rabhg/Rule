@@ -15,6 +15,9 @@
     <item android:title="@string/clear_keylogger_list"
         android:id="@+id/nav_clear_keylogger"
         android:visible="false"/>
+    <item android:title="@string/clear_300_keylogger_list"
+        android:id="@+id/nav_clear_300_keylogger"
+        android:visible="false"/>
     <item android:title="@string/clear_calls_list"
         android:id="@+id/nav_clear_calls"
         android:visible="false"/>

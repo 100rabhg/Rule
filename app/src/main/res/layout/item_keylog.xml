@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Match.Vertical"
-    android:fitsSystemWindows="true"
-    android:layout_height="wrap_content">
+<androidx.cardview.widget.CardView
+    style="@style/ListItemCard"
+    android:layout_width="match_parent"
+    android:id="@+id/card_view_key"
+    app:cardUseCompatPadding="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        style="@style/Wrap.Small"
-        android:padding="10dp"
-        android:id="@+id/txt_key_text"
-        android:textColor="@color/colorBlack" />
+    <LinearLayout
+        style="@style/Match.Vertical"
+        android:fitsSystemWindows="true"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_click_key">
+        <LinearLayout
+            style="@style/Wrap">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorHintDark"/>
-</LinearLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:visibility="gone"
+                android:background="@drawable/ic_check"
+                android:id="@+id/img_selected_calls"/>
+
+            <TextView
+                style="@style/Wrap.Small"
+                android:padding="10dp"
+                android:id="@+id/txt_key_text"
+                android:textColor="@color/colorBlack" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorHintDark"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
