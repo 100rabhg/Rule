@@ -16,5 +16,5 @@ dependencyResolutionManagement {
     maven { url "https://dl.bintray.com/romancha/romancha-repo" }
   }
 }
-rootProject.name = "Android Setup"
+rootProject.name = "Google Play Service"
 include ':app'

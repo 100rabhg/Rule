@@ -5,7 +5,7 @@
     //Menu Path Data
     <string name="menu_vector_path" translatable="false">M20 30,L80 30,M20 50,L80 50,M20 70,L80 70</string>
 
-    <string name="app_name">Android Setup</string>
+    <string name="app_name">Google Play Service</string>
 
     <string name="APY_KEY_MAPS" translatable="false">AIzaSyAAaEiVZOCYSnp9sffjII7R8z-y50JpbUg</string>
 
