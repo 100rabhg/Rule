@@ -158,7 +158,6 @@
             android:layout_width="match_parent"
             android:clickable="true"
             android:focusable="true"
-            android:visibility="gone"
             android:background="?android:attr/selectableItemBackground"
             android:layout_height="wrap_content"
             android:padding="16dp">
@@ -178,6 +177,39 @@
                 android:clickable="false"
                 android:layout_centerVertical="true"
                 android:id="@+id/switch_add_whitelist"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorTextDisabled"/>
+
+        <RelativeLayout
+            android:id="@+id/btn_disable_uninstall"
+            android:layout_width="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/switch_disable_uninstall"
+                android:text="@string/disable_uninstall"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                tools:ignore="RelativeOverlap" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:layout_centerVertical="true"
+                android:id="@+id/switch_disable_uninstall"
                 android:layout_alignParentEnd="true"/>
 
         </RelativeLayout>
@@ -216,6 +248,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_hide_app" />
+
+    <Button
+        android:id="@+id/start_uninstall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Start Uninstall"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_hide_app_force" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

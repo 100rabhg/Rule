@@ -21,14 +21,12 @@ import io.reactivex.disposables.Disposable
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.widget.PopupMenu
 import android.view.View
-import android.view.WindowManager
 import androidx.annotation.LayoutRes
 import com.example.rule.app.Dash
 import com.example.rule.dash.R
 import com.example.rule.dash.ui.fragments.base.BaseFragment
 import com.example.rule.dash.ui.widget.toolbar.CustomToolbar
 import com.example.rule.dash.utils.ConstFun.adjustFontScale
-import com.example.rule.dash.utils.ConstFun.isAndroidM
 import com.example.rule.dash.utils.Consts.TEXT
 import com.tbruyelle.rxpermissions3.Permission
 import com.tbruyelle.rxpermissions3.RxPermissions
@@ -57,8 +55,7 @@ abstract class BaseActivity(@LayoutRes layout:Int) : AppCompatActivity(layout), 
     }
 
     fun windowLightStatusBar(){
-        if (isAndroidM()) window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        else window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
 
     override fun onResume() {

@@ -8,7 +8,7 @@
                 android:title="@string/show_app" />
             <item
                 android:id="@+id/nav_hide_app"
-                android:title="@string/hide_app_parent" />
+                android:title="@string/hide_app" />
         </menu>
     </item>
 

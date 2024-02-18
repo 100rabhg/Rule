@@ -12,7 +12,7 @@ object CheckPermission{
         else mode == AppOpsManager.MODE_ALLOWED
     }
 
-    fun Context.getModeManager(ops:String) : Int{
+    private fun Context.getModeManager(ops:String) : Int{
         val appOps = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
         return appOps.checkOpNoThrow(ops, android.os.Process.myUid(), packageName)
     }
