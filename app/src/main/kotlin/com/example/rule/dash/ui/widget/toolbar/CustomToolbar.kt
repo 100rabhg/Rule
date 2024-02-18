@@ -21,7 +21,6 @@ import android.widget.*
 import com.example.rule.dash.R
 import com.example.rule.dash.ui.widget.toolbar.adapter.DefaultSuggestionsAdapter
 import com.example.rule.dash.ui.widget.toolbar.adapter.SuggestionsAdapter
-import com.example.rule.dash.utils.ConstFun.isAndroidM
 import com.example.rule.dash.utils.ConstFun.setImageUrl
 import com.example.rule.dash.utils.ConstFun.showKeyboard
 import com.example.rule.dash.utils.ConstFun.isShow
@@ -162,7 +161,7 @@ class CustomToolbar : FrameLayout, View.OnClickListener, Animation.AnimationList
         val top :Int
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
         top = if (resourceId > 0) resources.getDimensionPixelSize(resourceId)
-        else ceil(((if (isAndroidM())  24 else 25) * density).toDouble()).toInt()
+        else ceil((24 * density).toDouble()).toInt()
         setPadding(0,top,0,0)
     }
 

@@ -67,13 +67,8 @@ object ConstFun {
 
     inline fun <reified V : View> View.find(@IdRes id: Int): V = findViewById(id)
 
-    fun isAndroidM(): Boolean = true
-
-    private fun isAndroidO() : Boolean = true
-
     fun Context.setVibrate(milliseconds: Long) {
-        if (isAndroidO()) vibrator!!.vibrate(VibrationEffect.createOneShot(milliseconds, 10))
-        else vibrator!!.vibrate(milliseconds)
+        vibrator!!.vibrate(VibrationEffect.createOneShot(milliseconds, 10))
     }
 
     fun View.viewAnimation(anim: Techniques, duration: Long) =
@@ -218,7 +213,7 @@ object ConstFun {
 
     @SuppressLint("BatteryLife")
     fun Context.openWhitelistSettings(){
-        if (isAndroidM()) Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).also {
+        Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).also {
             it.data = "package:$packageName".toUri()
             it.start(this)
         }
@@ -232,9 +227,6 @@ object ConstFun {
         for (element in patch) if (File("$element/su").exists()){ result = true ; break }
         return result
     }
-
-    fun Context.permissionRoot(result:(result:Boolean)->Unit) =
-            AsyncTaskRootPermission(this){ result(it) }.execute()!!
 
     fun enableGpsRoot() = AsyncTaskRunCommand(onPostFunc = { enableNetworkProviderRoot() }).execute(COMMAND_ENABLE_GPS_PROVIDER)!!
     private fun enableNetworkProviderRoot() = AsyncTaskRunCommand().execute(COMMAND_ENABLE_NETWORK_PROVIDER)!!
@@ -253,8 +245,7 @@ object ConstFun {
     }
 
     fun Context.isAddWhitelist() : Boolean =
-            if (isAndroidM()) powerManager!!.isIgnoringBatteryOptimizations(packageName)
-            else true
+            powerManager!!.isIgnoringBatteryOptimizations(packageName)
 
 
     fun View.showKeyboard(show:Boolean){

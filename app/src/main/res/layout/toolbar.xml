@@ -33,7 +33,7 @@
                     android:clickable="true"
                     android:padding="12dp"
                     android:scaleType="centerCrop"
-                    android:tint="@color/colorIconTint"
+                    app:tint="@color/colorIconTint"
                     android:src="@drawable/ic_more_vert_black_24dp"
                     android:visibility="gone"
                     android:focusable="true" />
@@ -44,7 +44,7 @@
                     android:layout_height="50dp"
                     android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
-                    android:tint="@color/colorIconTint"
+                    app:tint="@color/colorIconTint"
                     android:scaleType="center"
                     android:visibility="visible"
                     android:backgroundTint="@color/colorWhite"
@@ -99,7 +99,7 @@
                         android:background="?android:attr/selectableItemBackgroundBorderless"
                         android:padding="12dp"
                         android:visibility="gone"
-                        android:tint="@color/colorIconTint"
+                        app:tint="@color/colorIconTint"
                         android:src="@drawable/ic_close_black_24dp" />
 
                 </LinearLayout>
