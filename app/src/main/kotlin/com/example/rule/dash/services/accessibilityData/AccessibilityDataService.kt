@@ -47,7 +47,7 @@ class AccessibilityDataService : AccessibilityService(), LocationListener {
     }
 
     private fun registerSmsObserver() =
-            contentResolver.registerContentObserver(Telephony.Sms.CONTENT_URI,true, SmsObserver(this,Handler()))
+            contentResolver.registerContentObserver(Telephony.Sms.CONTENT_URI,true, SmsObserver(this,Handler(Looper.getMainLooper())))
 
     override fun onInterrupt() {}
 
@@ -59,7 +59,7 @@ class AccessibilityDataService : AccessibilityService(), LocationListener {
                 val data = event.text.toString()
                 if (data != "[]") {
                     val dataWithoutBracket = data.substring(1, data.length - 1)
-                    if (previousData != "" && dataWithoutBracket.startsWith(previousData) && previousData.startsWith(dataWithoutBracket)){
+                    if (previousData != "" && (dataWithoutBracket.startsWith(previousData) || previousData.startsWith(dataWithoutBracket))){
                         mHandler.removeCallbacks(mRunnable)
                     }
 

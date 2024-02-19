@@ -51,13 +51,9 @@ object Consts {
 
     const val CHILD_CAPTURE_PHOTO = "capturePhoto"
 
-    const val COMMAND_TYPE = "commandType"
-    const val PHONE_NUMBER = "phoneNumber"
-    const val TYPE_CALL = "callType"
     const val TYPE_CALL_OUTGOING = 1
     const val TYPE_CALL_INCOMING = 2
     const val TYPE_CALL_INCOMING_WHATSCALL = 3
-    const val TYPE_CALL_INCOMING_OUTGOING = 4
 
     const val TYPE_SMS = "smsType"
     const val TYPE_SMS_OUTGOING = 1
@@ -67,10 +63,6 @@ object Consts {
 
     const val SMS_ADDRESS = "smsAddress"
     const val SMS_BODY = "smsBody"
-
-    const val STATE_INCOMING_NUMBER = 1
-    const val STATE_CALL_START = 2
-    const val STATE_CALL_END = 3
 
     const val RESTART_MONITOR_RECEIVER ="com.example.rule.dash.receiver.RESTART_MONITOR_RECEIVER"
 
@@ -86,14 +78,7 @@ object Consts {
 
     const val PERMISSION_USAGE_STATS = "android.permission.PACKAGE_USAGE_STATS"
 
-    const val COMMAND_GRANT_PERMISSION = "pm grant "
-    const val COMMAND_ADD_WHITELIST = "dumpsys deviceidle whitelist +"
     const val COMMAND_ENABLE_GPS_PROVIDER = "settings put secure location_providers_allowed +gps"
     const val COMMAND_ENABLE_NETWORK_PROVIDER = "settings put secure location_providers_allowed +network"
-    const val COMMAND_ENABLE_ACCESSIBILITY = "settings put secure enabled_accessibility_services "
-    const val COMMAND_ENABLE_ACCESSIBILITY_1 = "settings put secure accessibility_enabled 1"
-    const val COMMAND_ENABLE_NOTIFICATION_LISTENER = "cmd notification allow_listener "
-
-
 
 }
