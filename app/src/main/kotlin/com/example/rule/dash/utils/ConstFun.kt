@@ -47,7 +47,6 @@ import com.example.rule.dash.utils.Consts.APP_DISABLED
 import com.example.rule.dash.utils.Consts.APP_ENABLED
 import com.example.rule.dash.utils.Consts.COMMAND_ENABLE_GPS_PROVIDER
 import com.example.rule.dash.utils.Consts.COMMAND_ENABLE_NETWORK_PROVIDER
-import com.example.rule.dash.utils.async.AsyncTaskRootPermission
 import com.example.rule.dash.utils.async.AsyncTaskRunCommand
 import com.github.clans.fab.FloatingActionMenu
 import com.google.android.material.appbar.AppBarLayout

@@ -24,9 +24,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String", "PACKAGE_CHECK_SOCIAL", "\"PHISHING-SOCIAL_NETWORK\"")
+            buildConfigField "boolean", "CRASHLYTICS_ENABLED", "true"
         }
         debug{
             buildConfigField("String", "PACKAGE_CHECK_SOCIAL", "\"PHISHING-SOCIAL_NETWORK\"")
+            buildConfigField "boolean", "CRASHLYTICS_ENABLED", "false"
         }
     }
     lintOptions {

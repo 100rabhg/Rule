@@ -10,6 +10,8 @@ import com.example.rule.dash.di.module.FirebaseModule
 import com.example.rule.dash.utils.Consts.SIZE_CACHE_FIREBASE
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.example.rule.dash.BuildConfig
 
 class Dash : Application() {
 
@@ -32,6 +34,7 @@ class Dash : Application() {
             database.setPersistenceEnabled(true)
             database.setPersistenceCacheSizeBytes(SIZE_CACHE_FIREBASE)
         }
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(BuildConfig.CRASHLYTICS_ENABLED)
 
     }
 
